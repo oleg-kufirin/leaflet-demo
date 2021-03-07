@@ -1,0 +1,35 @@
+---
+title: "Leaflet Demo"
+author: "Oleg Kufirin"
+date: "07/03/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Here is my workplace
+
+
+```{r echo=FALSE, warning=FALSE}
+library(leaflet)
+
+hopkinsIcon <- makeIcon(
+  iconUrl = "https://pbs.twimg.com/profile_images/633481198472310784/9xzhEhuq_400x400.jpg",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16
+)
+
+content <- paste(sep = "<br/>",
+  "<b><a href='https://www.svhs.org.au/'>St Vincent's Hospital Sydney</a></b>",
+  "390 Victoria St ",
+  "Darlinghurst NSW 2010"
+)
+
+leaflet() %>% addTiles() %>% 
+              addMarkers(icon = hopkinsIcon, lat=-33.87980, lng=151.22198,) %>%
+              addPopups(lat=-33.87980, lng=151.22198, content, options = popupOptions(closeButton = FALSE))
+  
+```
+
